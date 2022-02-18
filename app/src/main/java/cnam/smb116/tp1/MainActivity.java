@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.editText = findViewById(R.id.editTextId);
+        this.editText.append("onCreate\n");
     }
     public void onClickStart(View v){
         AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
@@ -50,5 +51,30 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         this.editText.append("onStart\n");
+    }
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        this.editText.append("onRestart\n");
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        this.editText.append("onResume\n");
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        this.editText.append("onPause\n");
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        this.editText.append("onStop\n");
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        this.editText.append("onDestroy\n");
     }
 }

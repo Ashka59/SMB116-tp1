@@ -1,5 +1,7 @@
 package cnam.smb116.tp1;
 
+import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,13 +15,31 @@ import java.io.CharArrayWriter;
 public class MainActivity extends AppCompatActivity {
 
     private EditText editText;
+    private int variableInstance; //Question 2. variable d'instance
+    private static int variableClasse; //Question 2. variable de classe
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.editText = findViewById(R.id.editTextId);
-        this.editText.append("onCreate\n");
+
+        //Question 2. variable d'instance
+        ActivityManager manager = (ActivityManager)getApplication().getSystemService( Activity.ACTIVITY_SERVICE );
+        ActivityManager.RunningTaskInfo task = manager.getRunningTasks( 10 ).get( 0 );
+        variableInstance = task.numActivities;
+        Intent intent = getIntent();
+        intent.putExtra("iterationVariableInstance", variableInstance);
+        int iterationVariableInstance = intent.getExtras().getInt("iterationVariableInstance");
+
+        //Question 2. variable de classe
+        variableClasse++;
+
+        this.editText.append("onCreate " //Question 2. variable d'instance
+                +iterationVariableInstance
+                +"-"
+                +variableClasse //Question 2. variable de classe
+                +"\n");
     }
     public void onClickStart(View v){
         AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
@@ -44,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickFinish(View v){
+        variableClasse--; //Question 2. variable de classe
         finish();
     }
 

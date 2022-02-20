@@ -35,11 +35,8 @@ public class MainActivity extends AppCompatActivity {
         //Question 2. variable de classe
         variableClasse++;
 
-        this.editText.append("onCreate " //Question 2. variable d'instance
-                +iterationVariableInstance
-                +"-"
-                +variableClasse //Question 2. variable de classe
-                +"\n");
+        // this.editText.append("onCreate "+iterationVariableInstance+"\n"); //Version Variable d'instance (Question 2.)
+        this.editText.append("onCreate "+variableClasse+"\n"); //Version Variable de classe (Question 2.)
     }
     public void onClickStart(View v){
         AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
